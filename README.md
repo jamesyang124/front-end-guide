@@ -64,7 +64,7 @@ The downsides:
 
 - Heavier initial page load due to loading of framework, app code, and assets required for multiple pages.<sup><a href="#fn1" id="ref1">1</a></sup>
 - There's an additional step to be done on your server which is to configure it to route all requests to a single entry point and allow client-side routing to take over from there.
-- SPAs are reliant on JavaScript to render content, but not all search engines execute JavaScript during crawling, and they may see empty content on your page. This inadvertently hurts the SEO of your app. <sup><a href="#fn2" id="ref2">2</a></sup>
+- SPAs are reliant on JavaScript to render content, but not all search engines execute JavaScript during crawling, and they may see empty content on your page. This inadvertently hurts the Search Engine Optimization (SEO) of your app. <sup><a href="#fn2" id="ref2">2</a></sup>. However, most of the time, when you are building apps, SEO is not the most important factor, as not all the content needs to be indexable by search engines. To overcome this, you can either server-side render your app or use services such as [Prerender](https://prerender.io/) to "render your javascript in a browser, save the static HTML, and return that to the crawlers".
 
 While traditional server-side rendered apps are still a viable option, a clear client-server separation scales better for larger engineering teams, as the client and server code can be developed and released independently. This is especially so at Grab when we have multiple client apps hitting the same API server.
 
@@ -84,7 +84,7 @@ Before you dive into the various aspects of building a JavaScript web app, it is
 
 Prior to 2015, the last major update was ECMAScript 5.1, in 2011. However, in the recent years, JavaScript has suddenly seen a huge burst of improvements within a short span of time. In 2015, ECMAScript 2015 (previously called ECMAScript 6) was released and a ton of syntactic constructs were introduced to make writing code less unwieldy. If you are curious about it, Auth0 has written a nice article on the [history of JavaScript](https://auth0.com/blog/a-brief-history-of-javascript/). Till this day, not all browsers have fully implemented the ES2015 specification. Tools such as [Babel](https://babeljs.io/) enable developers to write ES2015 in their apps and Babel transpiles them down to ES5 to be compatible for browsers.
 
-Being familiar with both ES5 and ES2015 is crucial. ES2015 is still relatively new and a lot of open source code and Node.js apps are still written in ES5. If you are doing debugging in your browser console, you might not be able to use ES2015 syntax. On the other hand, documentation and example code for many modern libraries that we will introduce later below are still written in ES2015. At Grab, we use use [babel-preset-env](https://github.com/babel/babel-preset-env) to enjoy the productivity boost from the syntactic improvements the future of JavaScript provides and we have been loving it so far. `babel-preset-env` intelligently determines which Babel plugins are necessary (which new language features are not supported and have to be transpiled) as browsers increase native support for more ES language features.
+Being familiar with both ES5 and ES2015 is crucial. ES2015 is still relatively new and a lot of open source code and Node.js apps are still written in ES5. If you are doing debugging in your browser console, you might not be able to use ES2015 syntax. On the other hand, documentation and example code for many modern libraries that we will introduce later below are still written in ES2015. At Grab, we use [babel-preset-env](https://github.com/babel/babel-preset-env) to enjoy the productivity boost from the syntactic improvements the future of JavaScript provides and we have been loving it so far. `babel-preset-env` intelligently determines which Babel plugins are necessary (which new language features are not supported and have to be transpiled) as browsers increase native support for more ES language features. If you prefer using language features that are already stable, you may find that [babel-preset-stage-3](https://babeljs.io/docs/plugins/preset-stage-3/), which is a complete specification that will most likely be implemented in browsers, will be more suitable.
 
 Spend a day or two revising ES5 and exploring ES2015. The more heavily used features in ES2015 include "Arrows and Lexical This", "Classes", "Template Strings", "Destructuring", "Default/Rest/Spread operators", and "Importing and Exporting modules".
 
@@ -96,6 +96,7 @@ Spend a day or two revising ES5 and exploring ES2015. The more heavily used feat
 - [Learn ES2015 on Babel](https://babeljs.io/learn-es2015/)
 - [ES6 Katas](http://es6katas.org/)
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS) (Advanced content, optional for beginners)
+- [Answers to Front End Job Interview Questions — JavaScript](https://github.com/yangshun/tech-interview-handbook/blob/master/front-end/interview-questions.md#js-questions)
 
 ## User Interface - React
 
@@ -119,7 +120,7 @@ React brings about many radical ideas and encourages developers to [rethink best
 
 Over the years, new view libraries that are even more performant than React have emerged. React may not be the fastest library out there, but in terms of the ecosystem, overall usage experience and benefits, it is still one of the greatest. Facebook is also channeling efforts into making React even faster with a [rewrite of the underlying reconciliation algorithm](https://github.com/acdlite/react-fiber-architecture). The concepts that React introduced has taught us how to write better code, more maintainable web apps and made us better engineers. We like that.
 
-We recommend going through the [tutorial](https://facebook.github.io/react/tutorial/tutorial.html) on building a tic-tac-toe game on the React homepage to get a feel of what React is and what it does. For more in-depth learning, check out the highly-rated free course, [React Fundamentals](https://reacttraining.com/online/react-fundamentals) by the creators of [React Router](https://github.com/ReactTraining/react-router/), who are experts from the React community. It also covers more advanced concepts that are not covered by the React documentation. [Create React App](https://github.com/facebookincubator/create-react-app) by Facebook is a tool to scaffold a React project with minimal configuration and is highly recommended to use for starting new React projects.
+We recommend going through the [tutorial](https://facebook.github.io/react/tutorial/tutorial.html) on building a tic-tac-toe game on the React homepage to get a feel of what React is and what it does. For more in-depth learning, check out the Egghead course, [Build Your First Production Quality React App](https://egghead.io/courses/build-your-first-production-quality-react-app). It covers some advanced concepts and real-world usages that are not covered by the React documentation. [Create React App](https://github.com/facebookincubator/create-react-app) by Facebook is a tool to scaffold a React project with minimal configuration and is highly recommended to use for starting new React projects.
 
 React is a library, not a framework, and does not deal with the layers below the view - the app state. More on that later.
 
@@ -128,7 +129,7 @@ React is a library, not a framework, and does not deal with the layers below the
 #### Study Links
 
 - [React Official Tutorial](https://facebook.github.io/react/tutorial/tutorial.html)
-- [React Fundamentals](https://reacttraining.com/online/react-fundamentals)
+- [Egghead Course - Build Your First Production Quality React App](https://egghead.io/courses/build-your-first-production-quality-react-app)
 - [Simple React Development in 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f)
 - [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.5iexphyg5)
 
@@ -169,7 +170,7 @@ While Redux does not necessarily have to be used with React, it is highly recomm
 
 - **Functional composition paradigm** - React composes views (pure functions) while Redux composes pure reducers (also pure functions). Output is predictable given the same set of input.
 - **Easy To Reason About** - You may have heard this term many times but what does it actually mean? We interpret it as having control and understanding over our code - Our code behaves in ways we expect it to, and when there are problems, we can find them easily. Through our experience, React and Redux makes debugging simpler. As the data flow is unidirectional, tracing the flow of data (server responses, user input events) is easier and it is straightforward to determine which layer the problem occurs in.
-- **Layered Structure** - Each layer in the app / Flux architecture is a pure function, and has clear responsibilities. It is relatively easy to write tests for pure functions.
+- **Layered Structure** - Each layer in the app / Flux architecture is a pure function, and has clear responsibilities. It is relatively easy to write tests for pure functions. You have to centralize changes to your app within the reducer, and the only way to trigger a change is to dispatch an action.
 - **Development Experience** - A lot of effort has gone into creating tools to help in debugging and inspecting the app while development, such as [Redux DevTools](https://github.com/gaearon/redux-devtools). <br> ![Redux Devtools Demo](images/redux-devtools-demo.gif)
 
 Your app will likely have to deal with async calls like making remote API requests. [redux-thunk](https://github.com/gaearon/redux-thunk) and [redux-saga](https://github.com/redux-saga/redux-saga) were created to solve those problems. They may take some time to understand as they require understanding of functional programming and generators. Our advice is to deal with it only when you need it.
@@ -214,7 +215,8 @@ If you are a total beginner to CSS, Codecademy's [HTML & CSS course](https://www
 - [SUIT CSS](http://suitcss.github.io/)
 - [CSS Modules Specification](https://github.com/css-modules/css-modules)
 - [Sass Homepage](http://sass-lang.com/)
-- [A pattern for writing CSS to scale](http://www.intelligiblebabble.com/a-pattern-for-writing-css-to-scale)
+- [Answers to Front End Job Interview Questions — HTML](https://github.com/yangshun/tech-interview-handbook/blob/master/front-end/interview-questions.md#html-questions)
+- [Answers to Front End Job Interview Questions — CSS](https://github.com/yangshun/tech-interview-handbook/blob/master/front-end/interview-questions.md#css-questions)
 
 #### Alternatives
 
@@ -223,7 +225,7 @@ If you are a total beginner to CSS, Codecademy's [HTML & CSS course](https://www
 
 ## Maintainability
 
-Code is read more frequently than it is written. This is especially true at Grab, where the team size is large and we have multiple engineers working across multiple projects. We highly value readability, maintainability and stability of the code and there are a few ways to achieve that: "Extensive testing", "Consistent coding style" and "Typechecking".
+Code is read more frequently than it is written. This is especially true at Grab, where the team size is large and we have multiple engineers working across multiple projects. We highly value readability, maintainability and stability of the code and there are a few ways to achieve that: "Extensive testing", "Consistent coding style" and "Typechecking". Also when you are in a team, sharing same practices becomes really important. Check out these [JavaScript Project Guidelines](https://github.com/wearehive/project-guidelines) for instance.
 
 ## Testing - Jest + Enzyme
 
